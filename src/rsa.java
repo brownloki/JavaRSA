@@ -1,5 +1,12 @@
 public class rsa {
 
+    /**
+     * Calculate the greatest common denominator of two longs
+     * @param first -- one of the two longs to find gcd of
+     * @param second -- the other long
+     * @return -- gcd of the two
+     * @throws IllegalArgumentException -- if negative numbers are passed
+     */
     public static long gcd(long first, long second) throws IllegalArgumentException {
 
         //input validation
@@ -33,6 +40,7 @@ public class rsa {
      * @param number -- number to find inverse of
      * @param mod -- field to find inverse over
      * @return -- modular multiplicative of number (mod mod)
+     * @throws IllegalArgumentException -- if number < mod or gcd of the two != 1
      */
     public static triple inverse(long number, long mod) throws IllegalArgumentException {
 
