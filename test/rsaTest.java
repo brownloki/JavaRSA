@@ -12,4 +12,12 @@ public class rsaTest {
         assertEquals(12, rsa.gcd(12, 36), "gcd of one of the two numbers");
 
     }
+
+    @Test
+    public void modularInverseTest() {
+
+        assertEquals(5, rsa.inverse(60, 13).getS(), "does calculation wrong");
+
+    }
+
 }
