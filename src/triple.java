@@ -4,14 +4,14 @@
  * Extended Euclidean algorithm pseudocode written
  * by Richard Chang, UMBC
  */
-public class triple {
+public class Triple {
 
     private long d;
     private long s;
     private long t;
 
-    //constructor sets values of triple
-    public triple(long d, long s, long t) {
+    //constructor sets values of Triple
+    public Triple(long d, long s, long t) {
         this.d = d;
         this.s = s;
         this.t = t;
