@@ -117,6 +117,35 @@ public class rsa {
         return new KeyPair(privateExp, n);
     }
 
+    /**
+     * Method to encrypt or decrypt a message using modular exponentiation
+     * Credit to Nikita Tiwari: https://www.geeksforgeeks.org/modular-exponentiation-power-in-modular-arithmetic/
+     * @param message -- message to be transformed
+     * @param pair -- public or private KeyPair with exponent and modulo
+     * @return -- the encrypted/decrypted message
+     */
+    public static long encryptDecrypt(long message, KeyPair pair) {
+
+        long exp = pair.getExponent();
+        long mod = pair.getModulus();
+        long result = 1;
+
+        //Update x if it is greater than or equal to p
+        message = message % mod;
+
+        while (exp > 0)
+        {
+            //If exp is odd, multiply message with result
+            if((exp & 1)==1)
+                result = (result * message) % mod;
+
+            //make exp even
+            exp = exp / 2;
+            message = (message * message) % mod;
+        }
+        return result;
+    }
+
 
 }
 
