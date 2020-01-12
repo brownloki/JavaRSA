@@ -1,4 +1,53 @@
+import java.io.*;
+import java.util.Scanner;
+
+
 public class rsa {
+
+    public static void main(String[] args) throws IOException {
+
+        Scanner kb = new Scanner(System.in);
+        String fileName = "";
+
+        //get filename from user
+        do {
+            if (!fileName.equals("")) {
+                System.out.println("Invalid file name. Enter a new one.");
+            }
+            System.out.print("Enter the name of a .txt file to be encrypted: ");
+            fileName = kb.next();
+            System.out.println();
+        } while (!fileName.substring(fileName.length() - 4).equals(".txt"));
+
+        //create scanner to read in contents of file
+        File file = new File(fileName);
+        Scanner inputFile = new Scanner(file);
+
+        FileWriter outputFile = new FileWriter("encrypted.txt");
+
+        System.out.println("Want to specify two prime numbers for key generation? Y/N: ");
+        String specifyPrimes = kb.next();
+
+        //wants to enter their own primes
+        if (specifyPrimes.toLowerCase().charAt(0) == 'y') {
+
+        }
+        //doesn't want to enter their own primes
+        else {
+
+        }
+
+        //read in letter by letter
+        //direct copy spaces
+        //dashes in between letters?
+
+        while (inputFile.hasNext()) {
+
+        }
+
+        kb.close();
+        System.out.println("done");
+    }
 
     /**
      * Calculate the greatest common denominator of two longs
