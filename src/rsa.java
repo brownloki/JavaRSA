@@ -49,7 +49,10 @@ public class rsa {
         KeyPair publicPair = generatePublicKeys(p, q);
         KeyPair privatePair = generatePrivateKeys(p, q, publicPair.getExponent());
 
-        processFile(fileName, "encrypted.txt", publicPair);
+        //get original filename and encrypt it to encrypted.txt
+        System.out.print("Enter name of file to encrypt: ");
+        String origFile = kb.next();
+        processFile(origFile, "encrypted.txt", publicPair);
         System.out.println("Wrote file encrypted.txt");
         System.out.println();
 
