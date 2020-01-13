@@ -1,5 +1,4 @@
 import java.io.*;
-import java.security.Key;
 import java.util.Scanner;
 
 
@@ -20,86 +19,34 @@ public class rsa {
             System.out.println();
         } while (!fileName.substring(fileName.length() - 4).equals(".txt"));
 
-        System.out.println("Want to specify two prime numbers for key generation? Y/N: ");
-        String response = kb.next();
+        //create scanner to read in contents of file
+        File file = new File(fileName);
+        Scanner inputFile = new Scanner(file);
 
-        //vars for two primes
-        //NEED TO TEST FOR PRIMALITY
-        long p, q;
+        FileWriter outputFile = new FileWriter("encrypted.txt");
+
+        System.out.println("Want to specify two prime numbers for key generation? Y/N: ");
+        String specifyPrimes = kb.next();
 
         //wants to enter their own primes
-        if (response.toLowerCase().charAt(0) == 'y') {
-            System.out.print("Enter p:");
-            p = kb.nextLong();
-            System.out.println();
-
-            System.out.print("Enter q:");
-            q = kb.nextLong();
-            System.out.println();
+        if (specifyPrimes.toLowerCase().charAt(0) == 'y') {
 
         }
         //doesn't want to enter their own primes
         else {
-            System.out.println("Using p=7, q=19 for key generation");
-            p = 7;
-            q = 19;
+
         }
 
-        //generate keypairs using primes
-        KeyPair publicPair = generatePublicKeys(p, q);
-        KeyPair privatePair = generatePrivateKeys(p, q, publicPair.getExponent());
+        //read in letter by letter
+        //direct copy spaces
+        //dashes in between letters?
 
-        //get original filename and encrypt it to encrypted.txt
-        System.out.print("Enter name of file to encrypt: ");
-        String origFile = kb.next();
-        processFile(origFile, "encrypted.txt", publicPair);
-        System.out.println("Wrote file encrypted.txt");
-        System.out.println();
+        while (inputFile.hasNext()) {
 
-        System.out.print("Want to decrypt? Y/N: ");
-        response = kb.next();
-
-        //decrypt file and write it to decrypted.txt
-        if (response.toLowerCase().equals("y")) {
-            processFile("encrypted.txt", "decrypted.txt", privatePair);
-            System.out.println("Wrote file decrypted.txt");
         }
 
-        //clean up
         kb.close();
         System.out.println("done");
-    }
-
-    /**
-     * Encrypt or decrypt a .txt file from filenames and a keypair
-     * @param inputName -- name of original file
-     * @param outputName -- name of output file
-     * @param keys -- KeyPair used to encrypt/decrypt
-     * @throws IOException -- invalid filename
-     */
-    public static void processFile(String inputName, String outputName, KeyPair keys) throws IOException {
-
-        File file = new File(inputName);
-        Scanner inputFile = new Scanner(file);
-        FileWriter outputFile = new FileWriter(outputName);
-
-        String line;
-        long origChar, modChar;
-
-        while (inputFile.hasNextLine()) {
-
-            //read in file line by line
-            line = inputFile.nextLine();
-
-            //process the line character by character
-            for (int i = 0; i < line.length(); i++) {
-                origChar = (long) line.charAt(i);
-                modChar = encryptDecrypt(origChar, keys);
-
-                outputFile.write(Character.toString((char) modChar));
-            }
-        }
-        outputFile.close();
     }
 
     /**
