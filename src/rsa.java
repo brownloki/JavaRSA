@@ -20,8 +20,9 @@ public class rsa {
             System.out.println();
         } while (!fileName.substring(fileName.length() - 4).equals(".txt"));
 
-        System.out.println("Want to specify two prime numbers for key generation? Y/N: ");
+        System.out.print("Want to specify two prime numbers for key generation? Y/N: ");
         String response = kb.next();
+        System.out.println();
 
         //vars for two primes
         //NEED TO TEST FOR PRIMALITY
@@ -49,10 +50,8 @@ public class rsa {
         KeyPair publicPair = generatePublicKeys(p, q);
         KeyPair privatePair = generatePrivateKeys(p, q, publicPair.getExponent());
 
-        //get original filename and encrypt it to encrypted.txt
-        System.out.print("Enter name of file to encrypt: ");
-        String origFile = kb.next();
-        processFile(origFile, "encrypted.txt", publicPair);
+        //encrypt the file specified to encrypted.txt
+        processFile(fileName, "encrypted.txt", publicPair);
         System.out.println("Wrote file encrypted.txt");
         System.out.println();
 
